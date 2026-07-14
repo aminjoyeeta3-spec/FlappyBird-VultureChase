@@ -1,7 +1,7 @@
 #ifndef PIPE_H
 #define PIPE_H
 
-#define MAX_PIPES 5
+#include "config.h"
 
 typedef struct
 {
@@ -12,7 +12,7 @@ typedef struct
 } Pipe;
 
 void initializePipes(Pipe pipes[]);
-void updatePipes(Pipe pipes[]);
-void spawnPipe(Pipe pipes[]);
+void updatePipes(Pipe pipes[], int currentSpeed);
+void spawnPipe(Pipe pipes[], int currentGapHeight);
 
 #endif
