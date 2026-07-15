@@ -9,10 +9,18 @@ typedef struct
     int gapY;
     int gapHeight;
     int active;
+
 } Pipe;
 
+
+extern Pipe pipes[MAX_PIPES];
+
+
 void initializePipes(Pipe pipes[]);
+
 void updatePipes(Pipe pipes[], int currentSpeed);
+
 void spawnPipe(Pipe pipes[], int currentGapHeight);
+
 
 #endif

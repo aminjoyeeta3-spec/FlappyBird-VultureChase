@@ -1,6 +1,6 @@
 #include "../../include/pipe.h"
 #include <stdlib.h>
-
+Pipe pipes[MAX_PIPES];
 void initializePipes(Pipe pipes[]) {
     for (int i = 0; i < MAX_PIPES; i++) {
         pipes[i].active = 0;

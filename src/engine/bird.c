@@ -1,7 +1,7 @@
 #include "../../include/bird.h"
 
 
-
+Bird bird;
 void initializeBird(void)
 {
     bird.x = 15.0f;
@@ -18,19 +18,11 @@ void initializeBird(void)
 }
 
 
-
-
 void updateBird(float deltaTime)
 {
-
     bird.velocityY += bird.gravity * deltaTime;
-
-  
     bird.y += bird.velocityY * deltaTime;
 }
-
-
-
 
 void jumpBird(void)
 {
