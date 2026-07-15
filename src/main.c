@@ -16,7 +16,6 @@ void renderGame()
 
 
 
-
     for(int y = 0; y < SCREEN_HEIGHT; y++)
     {
         for(int x = 0; x < SCREEN_WIDTH; x++)
@@ -24,7 +23,7 @@ void renderGame()
             int printed = 0;
 
 
-            // Draw bird box
+        
             if(
                 x >= bird.x &&
                 x <= bird.x + BIRD_WIDTH &&
@@ -37,7 +36,6 @@ void renderGame()
             }
 
 
-            // Draw pipes
             for(int i = 0; i < MAX_PIPES; i++)
             {
                 if(pipes[i].active)
@@ -48,10 +46,7 @@ void renderGame()
                         x <= pipes[i].x + PIPE_WIDTH
                     )
                     {
-                        if(
-                            y < pipes[i].gapY ||
-                            y > pipes[i].gapY + pipes[i].gapHeight
-                        )
+                        if(y < pipes[i].gapY || y > pipes[i].gapY + pipes[i].gapHeight )
                         {
                             printf("|");
                             printed = 1;
@@ -87,6 +82,7 @@ int main()
     {
 
         clearScreen();
+
 
         if(keyPressed())
         {
