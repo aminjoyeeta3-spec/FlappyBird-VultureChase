@@ -16,8 +16,6 @@
 
 #endif
 
-
-
 void clearScreen(void)
 {
 

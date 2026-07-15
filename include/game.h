@@ -2,9 +2,7 @@
 #define GAME_H
 
 #include "bird.h"
-
-#define SCREEN_WIDTH 80
-#define SCREEN_HEIGHT 25
+#include "config.h"
 
 #define FPS 20
 
