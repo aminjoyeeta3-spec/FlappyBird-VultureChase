@@ -15,11 +15,7 @@ void renderGame()
     printf("Time  : %.2f\n\n", gameTime);
 
 
-    /*
-        Draw console area
-        Height = 25
-        Width = 80
-    */
+
 
     for(int y = 0; y < SCREEN_HEIGHT; y++)
     {
@@ -92,10 +88,6 @@ int main()
 
         clearScreen();
 
-
-
-        // Keyboard input
-
         if(keyPressed())
         {
             char key = getKey();
@@ -115,19 +107,10 @@ int main()
 
 
 
-        // Update engine + gameplay
 
         updateGame();
 
-
-
-        // Render
-
         renderGame();
-
-
-
-        // Control FPS
 
         sleepMS(1000/FPS);
 
