@@ -3,7 +3,6 @@
 
 #include "config.h"
 
-
 typedef struct {
     int active;
     float timer;
@@ -12,7 +11,6 @@ typedef struct {
     int width;
     int height;
 } Vulture;
-
 
 void initVulture(Vulture *vulture);
 
