@@ -4,15 +4,15 @@
 Bird bird;
 void initializeBird(void)
 {
-    bird.x = 15.0f;
+    bird.x = 120.0f;
 
-    bird.y = 12.0f;
+    bird.y = 360.0f;
 
     bird.velocityY = 0.0f;
 
-    bird.gravity = 30.0f;
+    bird.gravity = 950.0f;
 
-    bird.jumpForce = -12.0f;
+    bird.jumpForce = -450.0f;
 
     bird.alive = 1;
 }
