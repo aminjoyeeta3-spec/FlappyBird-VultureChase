@@ -1,0 +1,14 @@
+level 1:
+scores coins
+safe zone verification
+over if hit the pipe, sky or ground
+
+Level 2:
+scores coins plus gems(5X coins)
+vulture activated after each gem
+speed increases
+
+Level 3:
+increased gravity
+narrow gaps
+limited flapping with vul trigg

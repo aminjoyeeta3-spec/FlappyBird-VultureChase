@@ -1,8 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define SCREEN_WIDTH 80
-#define SCREEN_HEIGHT 25
+#define SCREEN_WIDTH 480
+#define SCREEN_HEIGHT 720
 
 #define MAX_PIPES 5
 #define PIPE_WIDTH 50
