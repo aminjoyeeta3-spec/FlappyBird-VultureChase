@@ -14,6 +14,9 @@ typedef struct
 
     int alive;
 
+    int flapCount;        
+    float panicTimer;     
+
 } Bird;
 
 extern Bird bird;

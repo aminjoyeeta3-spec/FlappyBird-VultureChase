@@ -11,4 +11,7 @@
 #define BIRD_WIDTH 4
 #define BIRD_HEIGHT 2
 
+#define PANIC_FLAP_LIMIT 5     
+#define PANIC_TIME_WINDOW 1.5f  
+
 #endif
