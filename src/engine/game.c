@@ -12,6 +12,7 @@ void initializeGame(void)
     game.running = 1;
     game.speed = 2;
     game.state = PLAYING;
+    game.currentGapHeight = PIPE_GAP_HEIGHT_START;
 
     initializeBird();
     initializeTimer();
@@ -30,6 +31,10 @@ void updateGame(void)
   
     updatePipes(pipes, game.speed);
 
+    if (game.currentGapHeight > PIPE_GAP_HEIGHT_MIN) 
+    {
+        game.currentGapHeight -= 1;
+    }
     
     if(checkBoundaryCollision((int)bird.y, BIRD_HEIGHT)!= COLLISION_NONE)
     {

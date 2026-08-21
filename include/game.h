@@ -16,13 +16,10 @@ typedef enum
 typedef struct
 {
     int score;
-
     int running;
-
     int speed;
-
+    int currentGapHeight;   
     GameState state;
-
 } Game;
 
 extern Game game;
