@@ -1,21 +1,21 @@
 #include<raylib.h>
-#include<bird.h>
 #include<render.h>
+#include<game.h>
+#include<config.h>
 
 int main(void)
 {
 
-    InitWindow(800, 600, "Flappy Bird");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Flappy Bird");
 
     SetTargetFPS(60);
 
-    initializeBird();
+    initializeGame();
     initRenderer();
 
     while(!WindowShouldClose())
     {
-        float deltaTime = GetFrameTime();
-        updateBird(deltaTime);
+        updateGame();
         renderFrame();
 
     }

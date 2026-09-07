@@ -4,6 +4,8 @@
 #include "../../include/render.h"
 #include "../../include/coin.h"
 #include "../../include/game.h"
+#include "../../include/pipe.h"
+#include "../../include/config.h"
 
 Texture2D birdTexture;
 Texture2D coinTexture;
@@ -20,6 +22,13 @@ void renderFrame(void){
     ClearBackground(RAYWHITE);
 
     DrawTexture(birdTexture, bird.x, bird.y, WHITE);
+
+    for(int i = 0; i < MAX_PIPES; i++){
+    if(pipes[i].active == 1){
+        DrawRectangle(pipes[i].x, 0, PIPE_WIDTH, pipes[i].gapY, GREEN);
+        DrawRectangle(pipes[i].x, pipes[i].gapY + pipes[i].gapHeight, PIPE_WIDTH, SCREEN_HEIGHT - (pipes[i].gapY + pipes[i].gapHeight), GREEN);
+    }
+}
 
     for(int i = 0; i < MAX_COINS; i++){
         if(coins[i].active == 1){
