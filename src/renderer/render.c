@@ -1,7 +1,9 @@
+#include<stdio.h>
 #include "raylib.h"
 #include "../../include/bird.h"
 #include "../../include/render.h"
 #include "../../include/coin.h"
+#include "../../include/game.h"
 
 Texture2D birdTexture;
 Texture2D coinTexture;
@@ -28,6 +30,9 @@ void renderFrame(void){
             }
         }
     }
-
+    char scoreText[32];
+    sprintf(scoreText, "Score: %d", game.score);
+    DrawText(scoreText, 10, 10, 20, BLACK);
     EndDrawing();
 }
+
