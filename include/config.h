@@ -11,7 +11,7 @@
 #define PIPE_GAP_HEIGHT_MIN   120
 
 #define GAP_MARGIN 50 
-#define BIRD_RADIUS            15.0f
+#define BIRD_RADIUS 15.0f
 
 #define PANIC_FLAP_LIMIT 5     
 #define PANIC_TIME_WINDOW 1.5f  

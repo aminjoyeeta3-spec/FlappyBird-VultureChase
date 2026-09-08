@@ -1,13 +1,12 @@
 #include "../../include/collision.h"
 #include "../../include/config.h"
 
-CollisionType checkBoundaryCollision(int birdY, int birdHeight) {
-    
-    if (birdY <= 0) {
+CollisionType checkBoundaryCollision(float birdY) {
+    if (birdY - BIRD_RADIUS <= 0) {
         return COLLISION_BOUNDARY;
     }
     
-    if ((birdY + birdHeight) >= SCREEN_HEIGHT) {
+    if (birdY + BIRD_RADIUS >= SCREEN_HEIGHT) {
         return COLLISION_BOUNDARY;
     }
     
