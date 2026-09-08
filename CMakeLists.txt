@@ -22,7 +22,6 @@ add_executable(flappy
     src/main.c
     src/engine/bird.c
     src/engine/time.c
-    src/engine/platform.c
     src/engine/collision.c
     src/engine/game.c
     src/gameplay/pipe.c
