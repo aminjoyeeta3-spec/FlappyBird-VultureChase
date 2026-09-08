@@ -30,6 +30,6 @@ void updateCoins(Coin coins[], int currentSpeed);
 
 void spawnCoin(Coin coins[], CoinType type);
 
-int collectCoin(Coin coins[], int birdX, int birdY, int birdWidth, int birdHeight);
+int collectCoin(Coin coins[], float birdX, float birdY, float birdRadius);
 
 #endif
