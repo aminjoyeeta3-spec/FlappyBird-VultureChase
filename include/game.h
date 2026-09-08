@@ -20,6 +20,9 @@ typedef struct
     int speed;
     int currentGapHeight;   
     GameState state;
+    float spawnTimer;
+    float difficultyTimer;
+    float speedTimer;
 } Game;
 
 extern Game game;
