@@ -24,6 +24,7 @@ typedef struct
     float spawnTimer;
     float difficultyTimer;
     float speedTimer;
+    float coinTimer;
 } Game;
 
 extern Game game;

@@ -5,6 +5,7 @@
 #include "../../include/pipe.h"
 #include "../../include/vulture.h"
 #include "../../include/safezone.h"
+#include "../../include/coin.h"
 
 Game game;
 Vulture vulture;
@@ -19,13 +20,14 @@ void initializeGame(void)
     game.spawnTimer = 0.0f;
     game.speedTimer = 0.0f;
     game.difficultyTimer = 0.0f;
-
+    game.coinTimer = 1.0f;
 
     initializeBird();
     initializeTimer();
     initVulture(&vulture);
     initializePipes(pipes);
     initializeSafeZone();
+    initializeCoins(coins);
 }
 
 
@@ -34,7 +36,7 @@ void updateGame(void)
     updateTimer();
     updateBird(deltaTime);
     updatePipes(pipes, game.speed);
-
+    updateCoins(coins, game.speed);
     
     game.difficultyTimer += deltaTime;
     if (game.difficultyTimer >= 2) {
@@ -43,6 +45,8 @@ void updateGame(void)
         }
         game.difficultyTimer = 0.0f;
     }
+
+    game.score += collectCoin(coins, bird.x, bird.y);
 
     if(checkBoundaryCollision(bird.y) != COLLISION_NONE)
     {
@@ -68,6 +72,12 @@ void updateGame(void)
         game.spawnTimer = 0.0f;
     }
 
+    game.coinTimer += deltaTime;
+    if(game.coinTimer >= 2.0f)
+    {
+         spawnCoin(coins, COIN);
+         game.coinTimer = 0.0f;
+    }
     
     game.speedTimer += deltaTime;
     if (game.speedTimer >= 2.5 && game.speed < 8) {
