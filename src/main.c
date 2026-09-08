@@ -2,6 +2,7 @@
 #include<render.h>
 #include<game.h>
 #include<config.h>
+#include<safezone.h>
 
 int main(void)
 {

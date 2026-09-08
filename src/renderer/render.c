@@ -6,22 +6,26 @@
 #include "../../include/game.h"
 #include "../../include/pipe.h"
 #include "../../include/config.h"
+#include "../../include/safezone.h"
 
 Texture2D birdTexture;
 Texture2D coinTexture;
 Texture2D starTexture;
+Texture2D backgroundTexture;
 
 void initRenderer(void){
     birdTexture = LoadTexture("assets/bird.png");
     coinTexture = LoadTexture("assets/coin.png");
     starTexture = LoadTexture("assets/star.png");
+    backgroundTexture = LoadTexture("assets/background.png");
 }
 
 void renderFrame(void){
     BeginDrawing();
-    ClearBackground(RAYWHITE);
 
-    DrawTexture(birdTexture, bird.x, bird.y, WHITE);
+    DrawTexture(backgroundTexture, 0, 0, WHITE);
+
+    DrawTexture(birdTexture, bird.x - BIRD_RADIUS, bird.y - BIRD_RADIUS, WHITE);
 
     for(int i = 0; i < MAX_PIPES; i++){
     if(pipes[i].active == 1){
@@ -39,6 +43,10 @@ void renderFrame(void){
             }
         }
     }
+
+    DrawRectangle(0, safeZone.top, SCREEN_WIDTH, 3, GREEN);
+    DrawRectangle(0, safeZone.bottom, SCREEN_WIDTH, 3, GREEN);
+
     char scoreText[32];
     sprintf(scoreText, "Score: %d", game.score);
     DrawText(scoreText, 10, 10, 20, BLACK);
