@@ -20,7 +20,7 @@ void activateVulture(Vulture *vulture, int birdX, int birdY)
 
     vulture->state = VULTURE_ACTIVE;
     vulture->timer = VULTURE_STRIKE_TIME;
-    vulture->x = birdX;
+    vulture->x = birdX - VULTURE_X_OFFSET;
 
     if (birdY < safeZone.top)
     {

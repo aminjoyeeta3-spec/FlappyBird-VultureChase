@@ -11,8 +11,8 @@ void initializeCoins(Coin coins[])
     {
         coins[i].x = 0;
         coins[i].y = 0;
-        coins[i].width = 10;
-        coins[i].height = 10;
+        coins[i].width = 20;
+        coins[i].height = 20;
         coins[i].active = 0;
         coins[i].value = 0;
         coins[i].type = COIN;
@@ -45,8 +45,8 @@ void spawnCoin(Coin coins[], CoinType type)
 
             coins[i].x = SCREEN_WIDTH;
 
-            coins[i].width = 10;
-            coins[i].height = 10;
+            coins[i].width = 20;
+            coins[i].height = 20;
 
             coins[i].type = type;
 

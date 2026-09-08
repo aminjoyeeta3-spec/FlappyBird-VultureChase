@@ -9,6 +9,7 @@
 #define VULTURE_HEIGHT 60
 
 #define VULTURE_OFFSET 30
+#define VULTURE_X_OFFSET 100
 
 typedef enum
 {
