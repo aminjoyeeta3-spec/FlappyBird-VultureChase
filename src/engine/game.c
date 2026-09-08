@@ -36,7 +36,7 @@ void updateGame(void)
         game.currentGapHeight -= 1;
     }
     
-    if(checkBoundaryCollision((int)bird.y, BIRD_HEIGHT)!= COLLISION_NONE)
+    if(checkBoundaryCollision(bird.y)!= COLLISION_NONE)
     {
         bird.alive = 0;
         game.running = 0;
@@ -45,11 +45,7 @@ void updateGame(void)
     }
 
     
-    if(checkPipeCollision(
-        (int)bird.x,
-        (int)bird.y,
-        BIRD_WIDTH,
-        BIRD_HEIGHT,pipes)!= COLLISION_NONE)
+    if(checkPipeCollision(bird.x, bird.y, pipes)!= COLLISION_NONE)
     {
         bird.alive = 0;
         game.running = 0;
