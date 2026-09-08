@@ -5,8 +5,8 @@
 
 #define VULTURE_STRIKE_TIME 5.0f
 
-#define VULTURE_WIDTH  40
-#define VULTURE_HEIGHT 40
+#define VULTURE_WIDTH  60
+#define VULTURE_HEIGHT 60
 
 #define VULTURE_OFFSET 30
 
