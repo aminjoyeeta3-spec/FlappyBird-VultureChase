@@ -30,25 +30,26 @@ void initializeGame(void)
     initializeCoins(coins);
 }
 
-
 void updateGame(void)
 {
     updateTimer();
     updateBird(deltaTime);
     updatePipes(pipes, game.speed);
     updateCoins(coins, game.speed);
-    
+
     game.difficultyTimer += deltaTime;
-    if (game.difficultyTimer >= 2) {
-        if (game.currentGapHeight > PIPE_GAP_HEIGHT_MIN) {
+    if (game.difficultyTimer >= 2)
+    {
+        if (game.currentGapHeight > PIPE_GAP_HEIGHT_MIN)
+        {
             game.currentGapHeight -= 2;
         }
         game.difficultyTimer = 0.0f;
     }
 
-    game.score += collectCoin(coins, bird.x, bird.y);
+    game.score += collectCoin(coins, bird.x, bird.y, BIRD_RADIUS);
 
-    if(checkBoundaryCollision(bird.y) != COLLISION_NONE)
+    if (checkBoundaryCollision(bird.y) != COLLISION_NONE)
     {
         bird.alive = 0;
         game.running = 0;
@@ -56,7 +57,7 @@ void updateGame(void)
         return;
     }
 
-    if(checkPipeCollision(bird.x, bird.y, pipes) != COLLISION_NONE)
+    if (checkPipeCollision(bird.x, bird.y, pipes) != COLLISION_NONE)
     {
         bird.alive = 0;
         game.running = 0;
@@ -64,31 +65,40 @@ void updateGame(void)
         return;
     }
 
-    
     game.spawnTimer += deltaTime;
-    if(game.spawnTimer >= 2.0f)
+    if (game.spawnTimer >= 2.0f)
     {
         spawnPipe(pipes, game.currentGapHeight);
         game.spawnTimer = 0.0f;
     }
 
     game.coinTimer += deltaTime;
-    if(game.coinTimer >= 2.0f)
+    if (game.coinTimer >= 2.0f)
     {
-         spawnCoin(coins, COIN);
-         game.coinTimer = 0.0f;
+        spawnCoin(coins, COIN);
+        game.coinTimer = 0.0f;
     }
-    
+
     game.speedTimer += deltaTime;
-    if (game.speedTimer >= 2.5 && game.speed < 8) {
+    if (game.speedTimer >= 2.5 && game.speed < 8)
+    {
         game.speed++;
         game.speedTimer = 0.0f;
     }
-     
-    updateVulture(&vulture, deltaTime, (int)bird.x, (int)bird.y);
 
-    if(bird.isPanicking || !isBirdInSafeZone((int)bird.y))
+    updateVulture(&vulture, deltaTime);
+    if (isVultureTimeUp(&vulture))
+        deactivateVulture(&vulture);
+
+    if (checkVultureCollision(bird.x, bird.y, &vulture) != COLLISION_NONE)
     {
-        activateVulture(&vulture);
+        bird.alive = 0;
+        game.running = 0;
+        game.state = GAME_OVER;
+        return;
+    }
+    if (bird.isPanicking || !isBirdInSafeZone((int)bird.y))
+    {
+        activateVulture(&vulture, bird.x, bird.y);
     }
 }

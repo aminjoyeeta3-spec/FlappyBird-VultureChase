@@ -20,8 +20,10 @@ CollisionType checkPipeCollision(float birdX, float birdY, Pipe pipes[]) {
     for (int i = 0; i < MAX_PIPES; i++) {
         if (pipes[i].active == 1) {
             Rectangle topPipe = {
-                pipes[i].x, 0,
-                PIPE_WIDTH, pipes[i].gapY
+                pipes[i].x, 
+                0,
+                PIPE_WIDTH,
+                 pipes[i].gapY
             };
             Rectangle bottomPipe = {
                 pipes[i].x,
@@ -29,11 +31,25 @@ CollisionType checkPipeCollision(float birdX, float birdY, Pipe pipes[]) {
                 PIPE_WIDTH,
                 SCREEN_HEIGHT - (pipes[i].gapY + pipes[i].gapHeight)
             };
-            if (CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, topPipe) ||
-                CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, bottomPipe)) {
+            if (CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, topPipe) || CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, bottomPipe)) {
                 return COLLISION_PIPE;
             }
         }
+    }
+    return COLLISION_NONE;
+}
+
+CollisionType checkVultureCollision(float birdX, float birdY, Vulture *vulture)
+{
+    if (!isVultureActive(vulture)) {
+        return COLLISION_NONE;
+    }
+    Vector2 birdCenter = { birdX, birdY };
+    Rectangle vultureRect = {
+        vulture->x, vulture->y, vulture->width, vulture->height
+    };
+    if (CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, vultureRect)) {
+        return COLLISION_VULTURE;
     }
     return COLLISION_NONE;
 }
