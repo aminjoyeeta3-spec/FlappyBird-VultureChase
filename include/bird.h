@@ -5,28 +5,21 @@ typedef struct
 {
     float x;
     float y;
-
     float velocityY;
-
     float gravity;
-
     float jumpForce;
-
     int alive;
-
-    int flapCount;        
-    float panicTimer;     
+    int flapCount;
+    float panicTimer;
+    int isPanicking;
 
 } Bird;
 
 extern Bird bird;
 
-
 void initializeBird(void);
 
-
 void updateBird(float deltaTime);
-
 
 void jumpBird(void);
 
