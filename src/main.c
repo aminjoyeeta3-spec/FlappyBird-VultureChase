@@ -1,8 +1,9 @@
-#include<raylib.h>
-#include<render.h>
-#include<game.h>
-#include<config.h>
-#include<safezone.h>
+#include <raylib.h>
+#include <render.h>
+#include <game.h>
+#include <config.h>
+#include <safezone.h>
+#include "../include/score.h"
 
 int main(void)
 {
@@ -12,7 +13,7 @@ int main(void)
     initializeGame();
     initRenderer();
 
-    while(!WindowShouldClose())
+    while (!WindowShouldClose())
     {
         if (IsKeyPressed(KEY_SPACE))
             jumpBird();
@@ -23,6 +24,12 @@ int main(void)
         }
         else if (game.state == GAME_OVER)
         {
+            if (!game.scoreSaved)
+            {
+                saveScore(game.score);
+                game.scoreSaved = 1;
+            }
+
             if (IsKeyPressed(KEY_R))
                 initializeGame();
         }

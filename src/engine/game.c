@@ -21,6 +21,7 @@ void initializeGame(void)
     game.speedTimer = 0.0f;
     game.difficultyTimer = 0.0f;
     game.coinTimer = 1.0f;
+    game.scoreSaved = 0;
 
     initializeBird();
     initializeTimer();

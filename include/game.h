@@ -19,7 +19,8 @@ typedef struct
     int score;
     int running;
     int speed;
-    int currentGapHeight;   
+    int currentGapHeight;  
+    int scoreSaved; 
     GameState state;
     float spawnTimer;
     float difficultyTimer;
