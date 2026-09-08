@@ -5,9 +5,7 @@
 
 int main(void)
 {
-
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Flappy Bird");
-
     SetTargetFPS(60);
 
     initializeGame();
@@ -15,12 +13,22 @@ int main(void)
 
     while(!WindowShouldClose())
     {
-        updateGame();
-        renderFrame();
+        if (IsKeyPressed(KEY_SPACE))
+            jumpBird();
 
+        if (game.state == PLAYING)
+        {
+            updateGame();
+        }
+        else if (game.state == GAME_OVER)
+        {
+            if (IsKeyPressed(KEY_R))
+                initializeGame();
+        }
+
+        renderFrame();
     }
 
     CloseWindow();
-
     return 0;
 }
