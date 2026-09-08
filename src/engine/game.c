@@ -3,8 +3,11 @@
 #include "../../include/bird.h"
 #include "../../include/collision.h"
 #include "../../include/pipe.h"
+#include "../../include/vulture.h"
+#include "../../include/safezone.h"
 
 Game game;
+Vulture vulture;
 
 void initializeGame(void)
 {
@@ -20,8 +23,9 @@ void initializeGame(void)
 
     initializeBird();
     initializeTimer();
-
+    initVulture(&vulture);
     initializePipes(pipes);
+    initializeSafeZone();
 }
 
 
@@ -69,5 +73,12 @@ void updateGame(void)
     if (game.speedTimer >= 2.5 && game.speed < 8) {
         game.speed++;
         game.speedTimer = 0.0f;
+    }
+     
+    updateVulture(&vulture, deltaTime, (int)bird.x, (int)bird.y);
+
+    if(bird.isPanicking || !isBirdInSafeZone((int)bird.y))
+    {
+        activateVulture(&vulture);
     }
 }

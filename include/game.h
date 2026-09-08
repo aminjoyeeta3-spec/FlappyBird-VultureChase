@@ -3,6 +3,7 @@
 
 #include "bird.h"
 #include "config.h"
+#include "vulture.h"
 
 #define FPS 20
 
@@ -26,6 +27,7 @@ typedef struct
 } Game;
 
 extern Game game;
+extern Vulture vulture;
 
 void initializeGame(void);
 
