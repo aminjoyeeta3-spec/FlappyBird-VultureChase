@@ -1,5 +1,6 @@
 #include "../../include/collision.h"
 #include "../../include/config.h"
+#include "raylib.h"
 
 CollisionType checkBoundaryCollision(float birdY) {
     if (birdY - BIRD_RADIUS <= 0) {
@@ -13,30 +14,26 @@ CollisionType checkBoundaryCollision(float birdY) {
     return COLLISION_NONE;
 }
 
-CollisionType checkPipeCollision(int birdX, int birdY, int birdWidth, int birdHeight, Pipe pipes[]) {
-
-    int birdLeft = birdX;
-    int birdRight = birdX + birdWidth;
-    int birdTop = birdY;
-    int birdBottom = birdY + birdHeight;
+CollisionType checkPipeCollision(float birdX, float birdY, Pipe pipes[]) {
+    Vector2 birdCenter = { birdX, birdY };
 
     for (int i = 0; i < MAX_PIPES; i++) {
         if (pipes[i].active == 1) {
-            
-            int pipeLeft = pipes[i].x;
-            int pipeRight = pipes[i].x + PIPE_WIDTH;
-            
-            int gapTop = pipes[i].gapY;
-            int gapBottom = pipes[i].gapY + pipes[i].gapHeight;
-
-            if (birdRight > pipeLeft && birdLeft < pipeRight) {
-                
-                if (birdTop < gapTop || birdBottom > gapBottom) {
-                    return COLLISION_PIPE; // Instant Game Over trigger
-                }
+            Rectangle topPipe = {
+                pipes[i].x, 0,
+                PIPE_WIDTH, pipes[i].gapY
+            };
+            Rectangle bottomPipe = {
+                pipes[i].x,
+                pipes[i].gapY + pipes[i].gapHeight,
+                PIPE_WIDTH,
+                SCREEN_HEIGHT - (pipes[i].gapY + pipes[i].gapHeight)
+            };
+            if (CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, topPipe) ||
+                CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, bottomPipe)) {
+                return COLLISION_PIPE;
             }
         }
     }
-    
     return COLLISION_NONE;
 }

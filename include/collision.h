@@ -12,6 +12,6 @@ typedef enum {
 
 CollisionType checkBoundaryCollision(float birdY);
 
-CollisionType checkPipeCollision(int birdX, int birdY, int birdWidth, int birdHeight, Pipe pipes[]);
+CollisionType checkPipeCollision(float birdX, float birdY, Pipe pipes[]);
 
 #endif
