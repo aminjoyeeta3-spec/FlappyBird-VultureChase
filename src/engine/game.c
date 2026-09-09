@@ -16,7 +16,8 @@ void initializeGame(void)
     game.score = 0;
     game.running = 1;
     game.speed = 2;
-    game.state = PLAYING;
+    game.state = COUNTDOWN;
+    game.countdownTimer = 3.0f;
     game.currentGapHeight = PIPE_GAP_HEIGHT_START;
     game.spawnTimer = 0.0f;
     game.speedTimer = 0.0f;
@@ -34,7 +35,7 @@ void initializeGame(void)
 
 void updateGame(void)
 {
-    updateTimer();
+    
     updateBird(deltaTime);
     updatePipes(pipes, game.speed);
     updateCoins(coins, game.speed);
@@ -53,7 +54,6 @@ void updateGame(void)
 
     if (checkBoundaryCollision(bird.y) != COLLISION_NONE)
     {
-        printf("DIED: BOUNDARY at y=%.1f\n", bird.y);
         bird.alive = 0;
         game.running = 0;
         game.state = GAME_OVER;
@@ -67,6 +67,7 @@ void updateGame(void)
         game.state = GAME_OVER;
         return;
     }
+    game.score += checkPipeScore(pipes, bird.x);
 
     game.spawnTimer += deltaTime;
     if (game.spawnTimer >= 2.0f)
@@ -89,26 +90,21 @@ void updateGame(void)
         game.speedTimer = 0.0f;
     }
 
-    updateVulture(&vulture, deltaTime);
+    updateVulture(&vulture, deltaTime, (int)bird.x, (int)bird.y);
+
+    if (isVultureActive(&vulture) && isBirdInSafeZone((int)bird.y))
+    {
+        deactivateVulture(&vulture);
+    }
 
     if (isVultureTimeUp(&vulture))
     {
-        if (isBirdInSafeZone((int)bird.y))
-        {
-            deactivateVulture(&vulture);
-        }
-        else
-        {
-            bird.alive = 0;
-            game.running = 0;
-            game.state = GAME_OVER;
-            return;
-        }
+        deactivateVulture(&vulture);
     }
+
 
     if (checkVultureCollision(bird.x, bird.y, &vulture) != COLLISION_NONE)
     {
-        printf("DIED: VULTURE at bird.x=%.1f vulture.x=%d\n", bird.x, vulture.x);
         bird.alive = 0;
         game.running = 0;
         game.state = GAME_OVER;

@@ -11,7 +11,8 @@ typedef enum
 {
     MENU,
     PLAYING,
-    GAME_OVER
+    GAME_OVER,
+    COUNTDOWN
 } GameState;
 
 typedef struct
@@ -26,6 +27,7 @@ typedef struct
     float difficultyTimer;
     float speedTimer;
     float coinTimer;
+    float countdownTimer;
 } Game;
 
 extern Game game;
