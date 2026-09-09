@@ -89,7 +89,19 @@ void updateGame(void)
 
     updateVulture(&vulture, deltaTime);
     if (isVultureTimeUp(&vulture))
-        deactivateVulture(&vulture);
+    {
+        if (isBirdInSafeZone((int)bird.y))
+        {
+            deactivateVulture(&vulture);
+        }
+        else
+        {
+            bird.alive = 0;
+            game.running = 0;
+            game.state = GAME_OVER;
+            return;
+        }
+    }
 
     if (checkVultureCollision(bird.x, bird.y, &vulture) != COLLISION_NONE)
     {
