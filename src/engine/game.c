@@ -6,6 +6,7 @@
 #include "../../include/vulture.h"
 #include "../../include/safezone.h"
 #include "../../include/coin.h"
+#include <stdio.h>
 
 Game game;
 Vulture vulture;
@@ -52,6 +53,7 @@ void updateGame(void)
 
     if (checkBoundaryCollision(bird.y) != COLLISION_NONE)
     {
+        printf("DIED: BOUNDARY at y=%.1f\n", bird.y);
         bird.alive = 0;
         game.running = 0;
         game.state = GAME_OVER;
@@ -88,6 +90,7 @@ void updateGame(void)
     }
 
     updateVulture(&vulture, deltaTime);
+
     if (isVultureTimeUp(&vulture))
     {
         if (isBirdInSafeZone((int)bird.y))
@@ -105,6 +108,7 @@ void updateGame(void)
 
     if (checkVultureCollision(bird.x, bird.y, &vulture) != COLLISION_NONE)
     {
+        printf("DIED: VULTURE at bird.x=%.1f vulture.x=%d\n", bird.x, vulture.x);
         bird.alive = 0;
         game.running = 0;
         game.state = GAME_OVER;

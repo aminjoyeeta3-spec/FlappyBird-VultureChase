@@ -31,7 +31,7 @@ CollisionType checkPipeCollision(float birdX, float birdY, Pipe pipes[]) {
                 PIPE_WIDTH,
                 SCREEN_HEIGHT - (pipes[i].gapY + pipes[i].gapHeight)
             };
-            if (CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, topPipe) || CheckCollisionCircleRec(birdCenter, BIRD_RADIUS, bottomPipe)) {
+            if (CheckCollisionCircleRec(birdCenter, PIPE_COLLISION_RADIUS, topPipe) || CheckCollisionCircleRec(birdCenter, PIPE_COLLISION_RADIUS, bottomPipe)) {
                 return COLLISION_PIPE;
             }
         }

@@ -12,6 +12,7 @@
 
 #define GAP_MARGIN 50 
 #define BIRD_RADIUS 15.0f
+#define PIPE_COLLISION_RADIUS (BIRD_RADIUS - 2.0f)
 
 #define PANIC_FLAP_LIMIT 5     
 #define PANIC_TIME_WINDOW 1.5f  
