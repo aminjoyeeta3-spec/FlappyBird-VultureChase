@@ -17,6 +17,8 @@ void initializePipes(Pipe pipes[])
 
         pipes[i].gapHeight = 0;
 
+        pipes[i].scored = 0;
+
     }
 
 }
@@ -56,6 +58,8 @@ void spawnPipe(Pipe pipes[], int currentGapHeight)
 
             pipes[i].active = 1;
 
+            pipes[i].scored = 0;
+
             pipes[i].x = SCREEN_WIDTH;
 
             int maxGapY = SCREEN_HEIGHT - currentGapHeight - GAP_MARGIN;
@@ -83,4 +87,23 @@ void spawnPipe(Pipe pipes[], int currentGapHeight)
 
     }
 
+}
+
+int checkPipeScore(Pipe pipes[], float birdX)
+{
+    int points = 0;
+
+    for (int i = 0; i < MAX_PIPES; i++)
+    {
+        if (pipes[i].active == 1 && !pipes[i].scored)
+        {
+            if (pipes[i].x + PIPE_WIDTH < birdX)
+            {
+                pipes[i].scored = 1;
+                points += COIN_VALUE;
+            }
+        }
+    }
+
+    return points;
 }

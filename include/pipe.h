@@ -9,6 +9,7 @@ typedef struct
     int gapY;
     int gapHeight;
     int active;
+    int scored;
 
 } Pipe;
 
@@ -21,6 +22,8 @@ void initializePipes(Pipe pipes[]);
 void updatePipes(Pipe pipes[], int currentSpeed);
 
 void spawnPipe(Pipe pipes[], int currentGapHeight);
+
+int checkPipeScore(Pipe pipes[], float birdX);
 
 
 #endif

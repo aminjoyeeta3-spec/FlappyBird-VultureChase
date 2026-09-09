@@ -5,6 +5,12 @@
 
 #define MAX_COINS 10
 
+#define COIN_WIDTH  20
+#define COIN_HEIGHT 20
+
+#define GEM_WIDTH   40
+#define GEM_HEIGHT  40
+
 typedef enum
 {
     COIN,

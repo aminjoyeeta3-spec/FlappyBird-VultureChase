@@ -7,6 +7,9 @@
 #define MAX_PIPES 5
 #define PIPE_WIDTH 50
 
+#define COIN_VALUE 10
+#define GEM_VALUE  50
+
 #define PIPE_GAP_HEIGHT_START 200
 #define PIPE_GAP_HEIGHT_MIN   120
 

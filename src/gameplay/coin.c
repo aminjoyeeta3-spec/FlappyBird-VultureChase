@@ -11,8 +11,8 @@ void initializeCoins(Coin coins[])
     {
         coins[i].x = 0;
         coins[i].y = 0;
-        coins[i].width = 20;
-        coins[i].height = 20;
+        coins[i].width = COIN_WIDTH;
+        coins[i].height = COIN_HEIGHT;
         coins[i].active = 0;
         coins[i].value = 0;
         coins[i].type = COIN;
@@ -45,18 +45,22 @@ void spawnCoin(Coin coins[], CoinType type)
 
             coins[i].x = SCREEN_WIDTH;
 
-            coins[i].width = 20;
-            coins[i].height = 20;
-
             coins[i].type = type;
 
             if (type == COIN)
             {
+                coins[i].width = COIN_WIDTH;
+                coins[i].height = COIN_HEIGHT;
+                coins[i].value = COIN_VALUE;
+
                 coins[i].y = safeZone.top + (rand() % (safeZone.bottom - safeZone.top - coins[i].height));
-                coins[i].value = 10;
             }
             else
             {
+                coins[i].width = GEM_WIDTH;
+                coins[i].height = GEM_HEIGHT;
+                coins[i].value = GEM_VALUE;
+
                 if (rand() % 2 == 0)
                 {
                     int range = safeZone.top - coins[i].height;
@@ -70,7 +74,7 @@ void spawnCoin(Coin coins[], CoinType type)
                
                 coins[i].y = safeZone.bottom + (rand() % range);
                 }
-                coins[i].value = 50;
+                
             }
 
             break;
