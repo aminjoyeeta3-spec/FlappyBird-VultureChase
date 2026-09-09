@@ -11,6 +11,9 @@
 #define VULTURE_OFFSET 30
 #define VULTURE_X_OFFSET 100
 
+#define VULTURE_CHASE_SPEED_X 60.0f
+#define VULTURE_CHASE_SPEED_Y 90.0f
+
 typedef enum
 {
     VULTURE_INACTIVE = 0,
@@ -31,7 +34,7 @@ void initVulture(Vulture *vulture);
 
 void activateVulture(Vulture *vulture, int birdX, int birdY);
 
-void updateVulture(Vulture *vulture, float deltaTime);
+void updateVulture(Vulture *vulture, float deltaTime, int birdX, int birdY);
 
 void deactivateVulture(Vulture *vulture);
 

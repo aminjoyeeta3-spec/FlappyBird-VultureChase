@@ -40,16 +40,48 @@ void activateVulture(Vulture *vulture, int birdX, int birdY)
     }
 }
 
-void updateVulture(Vulture *vulture, float deltaTime)
+void updateVulture(Vulture *vulture, float deltaTime, int birdX, int birdY)
 {
-    if (vulture->state == VULTURE_ACTIVE)
-    {
+    if (vulture->state != VULTURE_ACTIVE) return;
+    
         vulture->timer -= deltaTime;
         if (vulture->timer < 0.0f)
         {
             vulture->timer = 0.0f;
         }
+    
+    int targetY = birdY - vulture->height / 2;
+
+    int dx = birdX - vulture->x;
+    int stepX = (int)(VULTURE_CHASE_SPEED_X * deltaTime);
+    if (dx > stepX)
+    {
+        vulture->x += stepX;
     }
+    else if (dx < -stepX)
+    {
+        vulture->x -= stepX;
+    }
+    else
+    {
+        vulture->x = birdX;
+    }
+
+    int dy = targetY - vulture->y;
+    int stepY = (int)(VULTURE_CHASE_SPEED_Y * deltaTime);
+    if (dy > stepY)
+        {
+        vulture->y += stepY;
+        }
+    else if (dy < -stepY)
+    {
+        vulture->y -= stepY;
+    }
+    else
+    {
+        vulture->y = targetY;
+    }
+
 }
 
 void deactivateVulture(Vulture *vulture)
