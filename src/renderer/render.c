@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include "raylib.h"
+#include <math.h>
 #include "../../include/bird.h"
 #include "../../include/render.h"
 #include "../../include/coin.h"
@@ -53,11 +54,21 @@ void renderFrame(void){
     if(vulture.state == VULTURE_ACTIVE){
         DrawTexture(vultureTexture, vulture.x, vulture.y, WHITE);
     }
+    
+    if (game.state == COUNTDOWN)
+{
+    int count = (int)ceil(game.countdownTimer);
+    char countText[8];
+    sprintf(countText, "%d", count);
+    DrawText(countText, SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2 - 40, 80, WHITE);
+}   
 
-
+    if (game.state != COUNTDOWN)
+{
     char scoreText[32];
     sprintf(scoreText, "Score: %d", game.score);
     DrawText(scoreText, 10, 10, 20, BLACK);
+}
     
     if (game.state == GAME_OVER)
 {
