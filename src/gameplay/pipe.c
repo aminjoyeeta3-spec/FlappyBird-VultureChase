@@ -1,4 +1,5 @@
 #include "../../include/pipe.h"
+#include "../../include/safezone.h"
 #include <stdlib.h>
 
 Pipe pipes[MAX_PIPES];
@@ -62,20 +63,21 @@ void spawnPipe(Pipe pipes[], int currentGapHeight)
 
             pipes[i].x = SCREEN_WIDTH;
 
-            int maxGapY = SCREEN_HEIGHT - currentGapHeight - GAP_MARGIN;
+            int minGapY = safeZone.top;
+            int maxGapY = safeZone.bottom - currentGapHeight;
 
-            if (maxGapY > GAP_MARGIN)
+            if (maxGapY > minGapY)
             {
 
                 pipes[i].gapY =
-                    (rand() % (maxGapY - GAP_MARGIN + 1))
-                    + GAP_MARGIN;
+                    (rand() % (maxGapY - minGapY + 1))
+                    + minGapY;
 
             }
             else
             {
 
-                pipes[i].gapY = GAP_MARGIN;
+                pipes[i].gapY = minGapY;
 
             }
 
@@ -106,4 +108,29 @@ int checkPipeScore(Pipe pipes[], float birdX)
     }
 
     return points;
+}
+
+int getPipeTopHeight(Pipe pipe)
+{
+    int height = pipe.gapY - safeZone.top;
+    if (height < 0)
+    {
+        height = 0;
+    }
+    return height;
+}
+
+int getPipeBottomY(Pipe pipe)
+{
+    return pipe.gapY + pipe.gapHeight;
+}
+
+int getPipeBottomHeight(Pipe pipe)
+{
+    int height = safeZone.bottom - getPipeBottomY(pipe);
+    if (height < 0)
+    {
+        height = 0;
+    }
+    return height;
 }

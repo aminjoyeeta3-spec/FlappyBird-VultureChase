@@ -25,5 +25,11 @@ void spawnPipe(Pipe pipes[], int currentGapHeight);
 
 int checkPipeScore(Pipe pipes[], float birdX);
 
+int getPipeTopHeight(Pipe pipe);
+
+int getPipeBottomY(Pipe pipe);
+
+int getPipeBottomHeight(Pipe pipe);
+
 
 #endif
