@@ -24,6 +24,7 @@ void initializeGame(void)
     game.difficultyTimer = 0.0f;
     game.coinTimer = 1.0f;
     game.scoreSaved = 0;
+    game.gemTimer = 3.0f;
 
     initializeBird();
     initializeTimer();
@@ -81,6 +82,13 @@ void updateGame(void)
     {
         spawnCoin(coins, COIN);
         game.coinTimer = 0.0f;
+    }
+
+    game.gemTimer += deltaTime;
+    if (game.gemTimer >= 8.0f)
+    {
+        spawnCoin(coins, GEM);
+        game.gemTimer = 0.0f;
     }
 
     game.speedTimer += deltaTime;
