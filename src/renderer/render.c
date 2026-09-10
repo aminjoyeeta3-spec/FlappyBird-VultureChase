@@ -74,7 +74,9 @@ void renderFrame(void){
 {
     DrawText("GAME OVER", 130, 300, 40, MAROON);
     DrawText("Press R to Restart", 150, 350, 20, BLACK);
+    
 }
+
 
     EndDrawing();
 }
