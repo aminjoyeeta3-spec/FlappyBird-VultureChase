@@ -28,6 +28,7 @@ typedef struct
     float speedTimer;
     float coinTimer;
     float countdownTimer;
+    float gemTimer;
 } Game;
 
 extern Game game;
